@@ -17,7 +17,6 @@ const AppNavigator = createStackNavigator({
 const AppContainer = createAppContainer(AppNavigator);
 
 export default class App extends Component {
-
   state = { 
       store: { 
           myText: "Clique no botão"
