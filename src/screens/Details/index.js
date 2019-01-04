@@ -1,9 +1,9 @@
 import React from 'react';
-import { Text, View, ActivityIndicator, FlatList } from 'react-native';
-import { List, ListItem } from 'react-native-elements';
+import { View, ActivityIndicator, FlatList } from 'react-native';
+import ListHolderComponent from "../../components/ListHolderComponent";
+import Style from '../../styles/styles';
 import Colors from '../../utils/colors';
 import Constants from '../../utils/constants';
-import Styles from '../../styles/styles';
 import Strings from '../../utils/strings';
 
 export default class DetailsScreen extends React.Component {
@@ -21,42 +21,36 @@ export default class DetailsScreen extends React.Component {
     headerTintColor: Colors.GLOBAL.WHITE
   };
 
-  componentDidMount() {
-    return fetch(Constants.BASE_URL)
-      .then((response) => response.json())
-      .then((responseJson) => {
-        this.setState({
-          isLoading: false,
-          dataSource: responseJson.timelines,
-        }, function(){});
-      })
-      .catch((error) =>{
-        console.error(error);
-      }
-    );
+  async componentDidMount() {
+    try {
+      const response = await fetch(Constants.BASE_URL);
+      const responseJson = await response.json();
+      this.setState({
+        isLoading: false,
+        dataSource: responseJson.timelines,
+      }, function() { });
+    }
+    catch (error) {
+      console.error(error);
+    }
   }
 
   render(){
 
     if(this.state.isLoading){
       return(
-        <View style={{flex: 1, padding: 20}}>
+        <View style={Style.loading}>
           <ActivityIndicator/>
         </View>
       )
     }
 
     return(
-      <View style={{flex: 1}}>
+      <View style={Style.flex}>
         <FlatList
           data={this.state.dataSource}
           renderItem={({item}) => (
-              <View style={{paddingTop:10, paddingRight:20, paddingLeft:20, paddingBottom: 10}}>
-                <Text style={{fontSize: 20}}>{item.name}</Text>
-                {item.series.map((child) => (
-                  <Text style={{fontSize: 14}}>{child.year} - {child.name}</Text>
-                ))}
-              </View>
+              <ListHolderComponent name = {item.name} />
             )}
         />
       </View>

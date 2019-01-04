@@ -1,6 +1,9 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
+  flex: {
+    flex: 1
+  },
   container: {
     flex: 1,
     alignItems: 'center'
@@ -22,5 +25,10 @@ export default StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-end',
     marginBottom: 36
+  },
+  loading: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   }
 });
