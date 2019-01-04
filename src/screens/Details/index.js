@@ -21,18 +21,19 @@ export default class DetailsScreen extends React.Component {
     headerTintColor: Colors.GLOBAL.WHITE
   };
 
-  async componentDidMount() {
-    try {
-      const response = await fetch(Constants.BASE_URL);
-      const responseJson = await response.json();
-      this.setState({
-        isLoading: false,
-        dataSource: responseJson.timelines,
-      }, function() { });
-    }
-    catch (error) {
-      console.error(error);
-    }
+  componentDidMount() {
+    return fetch(Constants.BASE_URL)
+      .then((response) => response.json())
+      .then((responseJson) => {
+        this.setState({
+          isLoading: false,
+          dataSource: responseJson.timelines,
+        }, function(){});
+      })
+      .catch((error) =>{
+        console.error(error);
+      }
+    );
   }
 
   render(){
@@ -48,10 +49,10 @@ export default class DetailsScreen extends React.Component {
     return(
       <View style={Style.flex}>
         <FlatList
-          data={this.state.dataSource}
-          renderItem={({item}) => (
-              <ListHolderComponent name = {item.name} />
-            )}
+          data = {this.state.dataSource}
+          renderItem = {
+            ({item}) => (<ListHolderComponent name = {item.name} series = {item.series} />)
+          }
         />
       </View>
     );
