@@ -15,7 +15,8 @@ export default StyleSheet.create({
   row_container: {
     flex: 1,
     flexDirection: "row",
-    justifyContent: "flex-start"
+    justifyContent: "flex-start",
+    marginBottom: 5
   },
   title: {
     fontSize: 20
@@ -28,8 +29,8 @@ export default StyleSheet.create({
     fontSize: 14
   },
   image: {
-    width: 50,
-    height: 70,
+    width: 60,
+    height: 80,
     marginRight: 5,
     marginTop: 3,
     marginBottom: 5
