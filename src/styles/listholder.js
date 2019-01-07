@@ -1,10 +1,10 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
   container: {
-    paddingTop:10, 
-    paddingRight:20, 
-    paddingLeft:20, 
+    paddingTop: 10,
+    paddingRight: 20,
+    paddingLeft: 20,
     paddingBottom: 10
   },
   column_container: {
@@ -20,7 +20,11 @@ export default StyleSheet.create({
   title: {
     fontSize: 20
   },
-  content: {
+  body_title: {
+    fontSize: 14
+  },
+  body_content: {
+    fontWeight: "bold",
     fontSize: 14
   },
   image: {
