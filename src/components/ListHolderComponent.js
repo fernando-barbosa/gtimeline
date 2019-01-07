@@ -1,23 +1,25 @@
 import React from "react";
 import { Text, View, Image } from "react-native";
+import { Card } from "react-native-elements";
 import Style from "../styles/listholder";
 
 const ListHolderComponent = props => {
   return (
-    <View style={Style.container} key={props.id}>
-      <Text style={Style.title}>{props.name}</Text>
-      {props.series.map(child => (
-        <View style={Style.row_container} key={child.id}>
-          <Image style={Style.image} source={{ uri: child.image }} />
-          <View style={Style.column_container}>
-            <Text style={Style.body_title}>Series Name:</Text>
-            <Text style={Style.body_content}>{child.name}</Text>
-            <Text style={Style.body_title}>Century date:</Text>
-            <Text style={Style.body_content}>{child.year}</Text>
+    <Card containerStyle={Style.container} title={props.name}>
+      {props.series.map((u, i) => {
+        return (
+          <View style={Style.row_container} key={i}>
+            <Image style={Style.image} source={{ uri: u.image }} />
+            <View style={Style.column_container}>
+              <Text style={Style.body_title}>Series Name:</Text>
+              <Text style={Style.body_content}>{u.name}</Text>
+              <Text style={Style.body_title}>Century date:</Text>
+              <Text style={Style.body_content}>{u.year}</Text>
+            </View>
           </View>
-        </View>
-      ))}
-    </View>
+        );
+      })}
+    </Card>
   );
 };
 

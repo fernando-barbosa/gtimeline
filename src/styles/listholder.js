@@ -29,6 +29,9 @@ export default StyleSheet.create({
   },
   image: {
     width: 50,
-    height: 100
+    height: 70,
+    marginRight: 5,
+    marginTop: 3,
+    marginBottom: 5
   }
 });

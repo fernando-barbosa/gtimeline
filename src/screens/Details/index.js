@@ -1,5 +1,10 @@
 import React from "react";
-import { View, ActivityIndicator, FlatList } from "react-native";
+import {
+  View,
+  ActivityIndicator,
+  FlatList,
+  RefreshControl
+} from "react-native";
 import ListHolderComponent from "../../components/ListHolderComponent";
 import Style from "../../styles/styles";
 import Colors from "../../utils/colors";
@@ -21,6 +26,10 @@ export default class DetailsScreen extends React.Component {
   };
 
   componentDidMount() {
+    this.fetchData();
+  }
+
+  fetchData = () => {
     return fetch(Constants.BASE_URL)
       .then(response => response.json())
       .then(responseJson => {
@@ -35,6 +44,13 @@ export default class DetailsScreen extends React.Component {
       .catch(error => {
         console.error(error);
       });
+  };
+
+  _onRefresh() {
+    this.setState({ refreshing: true });
+    this.fetchData().then(() => {
+      this.setState({ refreshing: false });
+    });
   }
 
   render() {
@@ -58,6 +74,12 @@ export default class DetailsScreen extends React.Component {
             />
           )}
           keyExtractor={(item, index) => index.toString()}
+          refreshControl={
+            <RefreshControl
+              refreshing={this.state.refreshing}
+              onRefresh={this._onRefresh.bind(this)}
+            />
+          }
         />
       </View>
     );
