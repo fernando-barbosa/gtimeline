@@ -1,14 +1,7 @@
 import React from "react";
-import {
-  View,
-  ActivityIndicator,
-  FlatList,
-  RefreshControl
-} from "react-native";
-import ListHolderComponent from "../../components/ListHolderComponent";
+import { View } from "react-native";
 import Style from "../../styles/styles";
 import Colors from "../../utils/colors";
-import Constants from "../../utils/constants";
 import Strings from "../../utils/strings";
 
 export default class DetailsScreen extends React.Component {
@@ -24,4 +17,8 @@ export default class DetailsScreen extends React.Component {
     },
     headerTintColor: Colors.GLOBAL.WHITE
   };
+
+  render() {
+    return <View style={Style.flex} />;
+  }
 }

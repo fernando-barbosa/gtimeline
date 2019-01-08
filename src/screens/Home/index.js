@@ -61,7 +61,6 @@ export default class HomeScreen extends React.Component {
         </View>
       );
     }
-
     return (
       <View style={Style.flex}>
         <FlatList
