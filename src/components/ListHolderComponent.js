@@ -1,14 +1,23 @@
 import React from "react";
-import { Text, View, Image, TouchableOpacity } from "react-native";
+import { Text, View, Image, Alert, TouchableOpacity } from "react-native";
 import { Card } from "react-native-elements";
 import Style from "../styles/listholder";
+
+const displayAlert = props => {
+  Alert.alert(
+    props.name,
+    props.description,
+    [{ text: "OK", onPress: () => console.log("OK Pressed") }],
+    { cancelable: false }
+  );
+};
 
 const ListHolderComponent = props => {
   return (
     <Card containerStyle={Style.container} title={props.name}>
       {props.series.map((u, i) => {
         return (
-          <TouchableOpacity key={i} onPress={() => console.log(u.name)}>
+          <TouchableOpacity key={i} onPress={() => displayAlert(u)}>
             <View style={Style.row_container} key={i}>
               <Image style={Style.image} source={{ uri: u.image }} />
               <View style={Style.column_container}>
